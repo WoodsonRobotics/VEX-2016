@@ -13,16 +13,14 @@
 //*/
 
 #include "remote.c"
-void pre_auton()
-{
-	// Set bStopTasksBetweenModes to false if you want to keep user created tasks
-	// running between Autonomous and Driver controlled modes. You will need to
-	// manage all user created tasks if set to false.
-	bStopTasksBetweenModes = true;
-}
 
-task autonomous()
+void pre_auton() {}
+void auto()
 {
 
 }
+task autonomous()  { auto(); }
 task usercontrol() { remote(); }
+
+task main() { remote(); }
+//task main() { auto(); }
