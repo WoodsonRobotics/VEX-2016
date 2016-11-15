@@ -18,10 +18,10 @@ void remote()
 		int Mfl = -FBdrive - Rotation + LRstraif;
 		int Mbl = -FBdrive - Rotation - LRstraif;
 
-		if(Mfr < motorBuffer && Mfr > -motorBuffer) Mfr=0;
-		if(Mbr < motorBuffer && Mbr > -motorBuffer) Mbr=0;
-		if(Mfl < motorBuffer && Mfl > -motorBuffer) Mfl=0;
-		if(Mbl < motorBuffer && Mbl > -motorBuffer) Mbl=0;
+		if(Mfr < motorBuffer && Mfr > -motorBuffer) Mfr = 0;
+		if(Mbr < motorBuffer && Mbr > -motorBuffer) Mbr = 0;
+		if(Mfl < motorBuffer && Mfl > -motorBuffer) Mfl = 0;
+		if(Mbl < motorBuffer && Mbl > -motorBuffer) Mbl = 0;
 		motor[FR] = Mfr;
 		motor[BR] =  Mbr;
 		motor[FL] = Mfl;
