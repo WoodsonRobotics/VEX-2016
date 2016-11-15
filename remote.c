@@ -4,7 +4,9 @@
 
 void remote()
 {
-	int motorBuffer = 20;	//motors running at speeds less than 20 make a whining sound that is not great for the motor.
+	// Motors running at speeds less than 20 make a whining sound that is not great for the motor.
+	int motorBuffer = 20;
+
 	while (true)
 	{
 		/*
@@ -13,6 +15,7 @@ void remote()
 		motor[BL] = FBdrive - LRstraif + Rotation;
 		motor[BR] = -FBdrive - LRstraif + Rotation;
 		//*/
+
 		int Mfr = -FBdrive + Rotation - LRstraif;
 		int Mbr = -FBdrive + Rotation + LRstraif;
 		int Mfl = -FBdrive - Rotation + LRstraif;
@@ -22,10 +25,12 @@ void remote()
 		if(Mbr < motorBuffer && Mbr > -motorBuffer) Mbr = 0;
 		if(Mfl < motorBuffer && Mfl > -motorBuffer) Mfl = 0;
 		if(Mbl < motorBuffer && Mbl > -motorBuffer) Mbl = 0;
+
 		motor[FR] = Mfr;
 		motor[BR] = Mbr;
 		motor[FL] = Mfl;
 		motor[BL] = Mbl;
+
 		sleep(100);
 	}
 }
