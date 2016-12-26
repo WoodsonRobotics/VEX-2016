@@ -1,6 +1,11 @@
-#define Rotation vexRT[Ch4]
-#define LRstraif vexRT[Ch1]
-#define FBdrive vexRT[Ch2]
+#define Rotation 	vexRT[Ch4]
+// Left-Right Strafe
+#define LRstraif 	vexRT[Ch1]
+// Front-Back Drive
+#define FBdrive 	vexRT[Ch2]
+#define ClawOpen	vexRT[Btn8R]
+#define ClawUp		vexRT[Btn8U]
+#define ClawDown	vexRT[Btn8D]
 
 void remote()
 {
@@ -31,6 +36,10 @@ void remote()
 		motor[FL] = Mfl;
 		motor[BL] = Mbl;
 
+		// Claw Control
+		if(ClawOpen) clopcl();
+		if(ClawUp) clup();
+		if(ClawDown)cldown();
 		sleep(100);
 	}
 }
