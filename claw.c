@@ -1,28 +1,29 @@
 // Fill out later
-#define CL 0
-#define CR 0
+//#define CL 0
+//#define CR 0
 #define CF 0
-// Claw Speed
+// Amount to change height
+#define CDU 10
+#define CB 25
 #define CS 50
 bool ClawOpen = false;
 
+void clsetup()
+{
+	motor[CR] = CB;
+	motor[CL] = CB;
+}
 // Claw Up
 void clup()
 {
-	motor[CL] = CS;
-	motor[CR] = CS;
-	sleep(500);
-	motor[CL] = 0;
-	motor[CR] = 0;
+	motor[CL] += CDU;
+	motor[CR] += CDU;
 }
 // Claw Down
 void cldown()
 {
-	motor[CL] = -CS;
-	motor[CR] = -CS;
-	sleep(500);
-	motor[CL] = 0;
-	motor[CR] = 0;
+	motor[CL] -= CDU;
+	motor[CR] -= CDU;
 }
 // Claw Open
 void clopen()
