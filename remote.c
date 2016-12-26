@@ -11,7 +11,7 @@ void remote()
 {
 	// Motors running at speeds less than 20 make a whining sound that is not great for the motor.
 	int motorBuffer = 20;
-
+	clsetup();
 	while (true)
 	{
 		/*
