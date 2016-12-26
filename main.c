@@ -11,7 +11,7 @@
 #pragma competitionControl(Competition)
 #include "Vex_Competition_Includes.c"
 //*/
-
+#include "claw.c"
 #include "remote.c"
 
 void pre_auton() {}
