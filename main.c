@@ -19,7 +19,8 @@
 void pre_auton() {}
 void auto()
 {
-
+	clsetup();
+	sleep(1000);
 }
 
 task autonomous()  { auto(); }
