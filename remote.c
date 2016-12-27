@@ -3,9 +3,10 @@
 #define LRstraif 	vexRT[Ch1]
 // Front-Back Drive
 #define FBdrive 	vexRT[Ch2]
-#define ClawOpen	vexRT[Btn8R]
-#define ClawUp		vexRT[Btn8U]
-#define ClawDown	vexRT[Btn8D]
+#define ClawOpen	vexRT[Btn6U]
+#define ClawClose	vexRT[Btn6D]
+#define ClawUp		vexRT[Btn5U]
+#define ClawDown	vexRT[Btn5D]
 
 void remote()
 {
@@ -37,7 +38,8 @@ void remote()
 		motor[BL] = Mbl;
 
 		// Claw Control
-		if(ClawOpen) clopcl();
+		if(ClawOpen) clopen();
+		if(ClawClose) clclose();
 		if(ClawUp) clup();
 		if(ClawDown)cldown();
 		sleep(100);
