@@ -2,10 +2,11 @@
 //#define CL 0
 //#define CR 0
 #define CF 0
-// Amount to change height
+// Speed difference to change height
 #define CDU 10
 // Claw Base Speed
 #define CB 150
+// Speed to open/close claw
 #define CS 50
 bool ClawOpen = false;
 
