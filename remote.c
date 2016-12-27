@@ -15,13 +15,6 @@ void remote()
 	clsetup();
 	while (true)
 	{
-		/*
-		motor[FL] = FBdrive + LRstraif + Rotation;
-		motor[FR] = -FBdrive + LRstraif + Rotation;
-		motor[BL] = FBdrive - LRstraif + Rotation;
-		motor[BR] = -FBdrive - LRstraif + Rotation;
-		//*/
-
 		int Mfr = -FBdrive + Rotation - LRstraif;
 		int Mbr = -FBdrive + Rotation + LRstraif;
 		int Mfl = -FBdrive - Rotation + LRstraif;
