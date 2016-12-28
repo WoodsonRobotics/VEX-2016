@@ -1,12 +1,15 @@
 #define Rotation 	vexRT[Ch4]/2
 // Left-Right Strafe
-#define LRstraif 	vexRT[Ch1]
+#define LRstraif 	vexRT[Ch1]/2
 // Front-Back Drive
 #define FBdrive 	vexRT[Ch2]/2
 #define ClawOpen	vexRT[Btn6U]
 #define ClawClose	vexRT[Btn6D]
-#define ClawUp		vexRT[Btn5U]
-#define ClawDown	vexRT[Btn5D]
+#define ScissorUp		vexRT[Btn5U]
+#define ScissorDown	vexRT[Btn5D]
+#define ClawUp vexRT[Btn8D]
+#define ClawDown vexRT[Btn8U]
+
 
 void remote()
 {
@@ -33,8 +36,10 @@ void remote()
 		// Claw Control
 		if(ClawOpen) clopen();
 		if(ClawClose) clclose();
+		if(ScissorUp) srup();
+		if(ScissorDown)srdown();
 		if(ClawUp) clup();
-		if(ClawDown)cldown();
+		if(ClawDown) cldown();
 		sleep(100);
 	}
 }
