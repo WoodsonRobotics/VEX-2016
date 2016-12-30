@@ -5,7 +5,7 @@
 #define CL 0
 #define CR 0
 // Speed difference to change height
-#define CDU 10
+#define SDU 10
 // Scissor Base Speed
 #define SB 150
 // Speed to open/close claw
@@ -14,20 +14,20 @@ bool ClawOpen = false;
 
 void clsetup()
 {
-	motor[CR] = CB;
-	motor[CL] = CB;
+	motor[SR] = SB;
+	motor[SL] = SB;
 }
 // Scissor Up
 void srup()
 {
-	motor[CL] += CDU;
-	motor[CR] += CDU;
+	motor[SL] += SDU;
+	motor[SR] += SDU;
 }
 // Scissor Down
 void srdown()
 {
-	motor[CL] -= CDU;
-	motor[CR] -= CDU;
+	motor[SL] -= SDU;
+	motor[SR] -= SDU;
 }
 // Claw Open
 void clopen()

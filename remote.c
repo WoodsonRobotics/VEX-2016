@@ -1,3 +1,5 @@
+
+
 #define Rotation 	vexRT[Ch4]/2
 // Left-Right Strafe
 #define LRstraif 	vexRT[Ch1]/2
