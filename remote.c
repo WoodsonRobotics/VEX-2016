@@ -40,8 +40,10 @@ void remote()
 		if(ClawClose) clclose();
 		if(ScissorUp) srup();
 		if(ScissorDown)srdown();
+		if(!ScissorUp&&!ScissorDown)srhold();
 		if(ClawUp) clup();
 		if(ClawDown) cldown();
+		if(!ClawUp&&!ClawDown) clhold();
 		sleep(100);
 	}
 }
