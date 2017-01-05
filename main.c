@@ -21,7 +21,7 @@
 void pre_auton() {}
 void auto()
 {
-	clsetup();
+	srsetup();
 	sleep(1000);
 }
 
