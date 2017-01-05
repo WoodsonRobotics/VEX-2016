@@ -27,8 +27,8 @@ void srdown()
 // Scissor Hold
 void srhold()
 {
-motor[SL] = SciBase;
-motor[SR] = SciBase;
+	motor[SL] = SciBase;
+	motor[SR] = SciBase;
 }
 // Claw Open
 void clopen()
@@ -47,15 +47,15 @@ void clclose()
 // Claw Up
 void clup()
 {
-motor[CR] = LiftLow;
+	motor[CR] = LiftLow;
 }
 // Claw Down
 void cldown()
 {
-motor[CR] = -LiftLow;
+	motor[CR] = -LiftLow;
 }
 // Claw Hold
 void clhold()
 {
-motor[CR] = 0;
+	motor[CR] = 0;
 }
