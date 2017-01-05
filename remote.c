@@ -35,15 +35,16 @@ void remote()
 		motor[FL] = Mfl;
 		motor[BL] = Mbl;
 
+		// Scissor Control
+		if(ScissorUp) srup();
+		if(ScissorDown) srdown();
+		if( !(ScissorUp || ScissorDown) ) srhold();
 		// Claw Control
 		if(ClawOpen) clopen();
 		if(ClawClose) clclose();
-		if(ScissorUp) srup();
-		if(ScissorDown)srdown();
-		if(!ScissorUp&&!ScissorDown)srhold();
 		if(ClawUp) clup();
 		if(ClawDown) cldown();
-		if(!ClawUp&&!ClawDown) clhold();
+		if( !(ClawUp || ClawDown) ) clhold();
 		sleep(100);
 	}
 }
