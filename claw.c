@@ -7,9 +7,6 @@
 // Speed to lift/lower claw
 #define LiftLow 75
 
-#define ClawUp 1000
-#define ClawDown 1000
-
 void srsetup()
 {
 	motor[ScissorRight] = SciBase;
@@ -36,6 +33,21 @@ void srhold()
 	motor[ScissorLeft] = SciBase;
 	motor[ScissorRight] = SciBase;
 }
+// Claw Hold
+task clhold()
+{
+	int clawCurrent = nMotorEncoder[ClawRotation];
+	motor[ClawRotation] = 0;
+	while(1)
+	{
+		if(nMotorEncoder[ClawRotation] > clawCurrent)
+		{
+			motor[ClawRotation] = LiftLow;
+			sleep(50);
+			motor[ClawRotation] = 0;
+		}
+	}
+}
 // Claw Open
 void clopen()
 {
@@ -55,29 +67,16 @@ void clup()
 {
 	motor[ClawRotation] = LiftLow;
 	sleep(100);
-	startTask(clhold(nMotorEncoder[ClawRotation]));
+	startTask(clhold);
 }
 // Claw Down
 void cldown()
 {
 	motor[ClawRotation] = -LiftLow;
 	sleep(100);
-	startTask(clhold(nMotorEncoder[ClawRotation]));
+	startTask(clhold);
 }
-// Claw Hold
-task clhold(int clawCurrent)
-{
-	motor[ClawRotation] = 0;
-	while(1)
-	{
-		if(nMotorEncoder[ClawRotation] > clawCurrent)
-		{
-			motor[ClawRotation] = LiftLow;
-			sleep(50);
-			motor[ClawRotation] = 0;
-		}
-	}
-}
+
 
 // Motor Encoder
 // 627.2 per full rotation of the gear
