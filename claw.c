@@ -7,10 +7,16 @@
 // Speed to lift/lower claw
 #define LiftLow 75
 
+#define ClawUp 1000
+#define ClawDown 1000
+
 void srsetup()
 {
 	motor[ScissorRight] = SciBase;
 	motor[ScissorLeft] = SciBase;
+	// Set motor encoders to zero to ensure good operation
+	nMotorEncoder[ScissorLeft] = 0;
+	nMotorEncoder[ClawRotation] = 0;
 }
 // Scissor Up
 void srup()
@@ -48,14 +54,23 @@ void clclose()
 void clup()
 {
 	motor[ClawRotation] = LiftLow;
+	startTask(rotateClaw(ClawUp));
 }
 // Claw Down
 void cldown()
 {
 	motor[ClawRotation] = -LiftLow;
+	startTask(rotateClaw(ClawDown));
 }
 // Claw Hold
 void clhold()
 {
 	motor[ClawRotation] = 0;
+}
+task rotateClaw(int end)
+{
+	while(nMotorEncoder[ClawRotation] < end)
+	{
+
+	}
 }
