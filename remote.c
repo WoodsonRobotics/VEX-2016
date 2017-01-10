@@ -44,7 +44,7 @@ void remote()
 		if(ClawClose) clclose();
 		if(ClawUp) clup();
 		if(ClawDown) cldown();
-		if( !(ClawUp || ClawDown) ) clhold();
+		//if( !(ClawUp || ClawDown) ) clhold();
 		if(FreakOut) stopAllMotors();
 		sleep(100);
 	}
