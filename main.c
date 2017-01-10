@@ -45,15 +45,17 @@ void auto()
 task autonomous()  { auto(); }
 task usercontrol() { remote(); }
 
-task main() { remote(); }
+//task main() { remote(); }
 //task main() { auto(); }
 
 /* Test motor encoder
 task main()
 {
 	srsetup();
-	clup();
+	srdown();
+	cldown();
+	startTask(debug);
 	sleep(1000);
-
+	stopAllMotors();
 }
 //*/
