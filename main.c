@@ -45,5 +45,15 @@ void auto()
 task autonomous()  { auto(); }
 task usercontrol() { remote(); }
 
-//task main() { remote(); }
-task main() { auto(); }
+task main() { remote(); }
+//task main() { auto(); }
+
+/* Test motor encoder
+task main()
+{
+	srsetup();
+	clup();
+	sleep(1000);
+
+}
+//*/
