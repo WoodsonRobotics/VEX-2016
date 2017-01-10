@@ -7,6 +7,13 @@
 // Speed to lift/lower claw
 #define LiftLow 75
 
+task debug()
+{
+	while(1)
+	{
+		writeDebugStreamLine("Claw: %d\nScissor: %d",nMotorEncoder[ClawRotation],nMotorEncoder[ScissorLeft]);
+	}
+}
 void srsetup()
 {
 	motor[ScissorRight] = SciBase;
@@ -73,7 +80,7 @@ void clup()
 // Claw Down
 void cldown()
 {
-	StopTask(clhold);
+	stopTask(clhold);
 	motor[ClawRotation] = -LiftLow;
 	sleep(100);
 	startTask(clhold);
