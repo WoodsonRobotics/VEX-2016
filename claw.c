@@ -65,6 +65,7 @@ void clclose()
 // Claw Up
 void clup()
 {
+	stopTask(clhold);
 	motor[ClawRotation] = LiftLow;
 	sleep(100);
 	startTask(clhold);
@@ -72,6 +73,7 @@ void clup()
 // Claw Down
 void cldown()
 {
+	StopTask(clhold);
 	motor[ClawRotation] = -LiftLow;
 	sleep(100);
 	startTask(clhold);
