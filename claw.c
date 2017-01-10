@@ -54,23 +54,31 @@ void clclose()
 void clup()
 {
 	motor[ClawRotation] = LiftLow;
-	startTask(rotateClaw(ClawUp));
+	sleep(100);
+	startTask(clhold(nMotorEncoder[ClawRotation]));
 }
 // Claw Down
 void cldown()
 {
 	motor[ClawRotation] = -LiftLow;
-	startTask(rotateClaw(ClawDown));
+	sleep(100);
+	startTask(clhold(nMotorEncoder[ClawRotation]));
 }
 // Claw Hold
-void clhold()
+task clhold(int clawCurrent)
 {
 	motor[ClawRotation] = 0;
-}
-task rotateClaw(int end)
-{
-	while(nMotorEncoder[ClawRotation] < end)
+	while(1)
 	{
-
+		if(nMotorEncoder[ClawRotation] > clawCurrent)
+		{
+			motor[ClawRotation] = LiftLow;
+			sleep(50);
+			motor[ClawRotation] = 0;
+		}
 	}
 }
+
+// Motor Encoder
+// 627.2 per full rotation of the gear
+// Initial position is zero
