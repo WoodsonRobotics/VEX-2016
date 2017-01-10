@@ -9,53 +9,53 @@
 
 void srsetup()
 {
-	motor[SR] = SciBase;
-	motor[SL] = SciBase;
+	motor[ScissorRight] = SciBase;
+	motor[ScissorLeft] = SciBase;
 }
 // Scissor Up
 void srup()
 {
-	motor[SL] = SciBase + SpdDif;
-	motor[SR] = SciBase + SpdDif;
+	motor[ScissorLeft] = SciBase + SpdDif;
+	motor[ScissorRight] = SciBase + SpdDif;
 }
 // Scissor Down
 void srdown()
 {
-	motor[SL] = SciBase - SpdDif;
-	motor[SR] = SciBase - SpdDif;
+	motor[ScissorLeft] = SciBase - SpdDif;
+	motor[ScissorRight] = SciBase - SpdDif;
 }
 // Scissor Hold
 void srhold()
 {
-	motor[SL] = SciBase;
-	motor[SR] = SciBase;
+	motor[ScissorLeft] = SciBase;
+	motor[ScissorRight] = SciBase;
 }
 // Claw Open
 void clopen()
 {
-	motor[CG] = OpClSpd;
+	motor[ClawGrab] = OpClSpd;
 	sleep(500);
-	motor[CG] = 0;
+	motor[ClawGrab] = 0;
 }
 // Claw Close
 void clclose()
 {
-	motor[CG] = -OpClSpd;
+	motor[ClawGrab] = -OpClSpd;
 	sleep(500);
-	motor[CG] = 0;
+	motor[ClawGrab] = 0;
 }
 // Claw Up
 void clup()
 {
-	motor[CR] = LiftLow;
+	motor[ClawRotation] = LiftLow;
 }
 // Claw Down
 void cldown()
 {
-	motor[CR] = -LiftLow;
+	motor[ClawRotation] = -LiftLow;
 }
 // Claw Hold
 void clhold()
 {
-	motor[CR] = 0;
+	motor[ClawRotation] = 0;
 }

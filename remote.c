@@ -1,10 +1,9 @@
 
-
-#define Rotation 	vexRT[Ch4]/2
+#define Rotation 	vexRT[Ch4]*2/3
 // Left-Right Strafe
-#define LRstraif 	vexRT[Ch1]/2
+#define LRstraif 	vexRT[Ch1]*2/3
 // Front-Back Drive
-#define FBdrive 	vexRT[Ch2]/2
+#define FBdrive 	vexRT[Ch2]*2/3
 #define ClawOpen	vexRT[Btn6U]
 #define ClawClose	vexRT[Btn6D]
 #define ScissorUp		vexRT[Btn5U]
@@ -31,10 +30,10 @@ void remote()
 		if(Mfl < motorBuffer && Mfl > -motorBuffer) Mfl = 0;
 		if(Mbl < motorBuffer && Mbl > -motorBuffer) Mbl = 0;
 
-		motor[FR] = Mfr;
-		motor[BR] = Mbr;
-		motor[FL] = Mfl;
-		motor[BL] = Mbl;
+		motor[FrontRight] = Mfr;
+		motor[BackRight] = Mbr;
+		motor[FrontLeft] = Mfl;
+		motor[BackLeft] = Mbl;
 
 		// Scissor Control
 		if(ScissorUp) srup();
