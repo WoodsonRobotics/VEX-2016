@@ -1,7 +1,7 @@
 #pragma config(I2C_Usage, I2C1, i2cSensors)
 #pragma config(Sensor, in1,    LeftOrRight,    sensorPotentiometer)
 #pragma config(Sensor, I2C_1,  Scissor,        sensorQuadEncoderOnI2CPort,    , AutoAssign )
-#pragma config(Sensor, I2C_2,  Claw,           sensorQuadEncoderOnI2CPort,    , AutoAssign )
+#pragma config(Sensor, I2C_2,  ClawRotation,   sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port2,           FrontRight,    tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           BackRight,     tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           BackLeft,      tmotorVex393_MC29, openLoop, reversed)
@@ -25,8 +25,9 @@ task debug()
 {
 	while(1)
 	{
-		writeDebugStreamLine("Claw 		Motor: %d	Encoder: %d",motor[ClawRotation],nMotorEncoder[Claw]);
+		writeDebugStreamLine("Claw 		Motor: %d	Encoder: %d",motor[ClawRotation],nMotorEncoder[ClawRotation]);
 		writeDebugStreamLine("Scissor Motor: %d	Encoder: %d",motor[Scissor],nMotorEncoder[Scissor]);
+		sleep(500);
 	}
 }
 
@@ -48,5 +49,5 @@ void auto()
 task autonomous()  { auto(); }
 task usercontrol() { remote(); }
 
-task main() { startTask(debug); remote(); }
+task main() { remote(); }
 //task main() { auto(); }

@@ -23,12 +23,12 @@ void srsetup()
 {
 	slaveMotor(ScissorSlave,Scissor);
 	nMotorEncoder[Scissor] = EncClk * (-60 * 7) / 360;
-	nMotorEncoder[Claw] = EncClk * (180) / 360;
+	nMotorEncoder[ClawRotation] = EncClk * (180) / 360;
 	motor[Scissor] = SciBase;
-	while(nMotorEncoder[Claw]>10){
-		motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk)) - ClwMve;
+	while(nMotorEncoder[ClawRotation]>10){
+		motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk)) - ClwMve;
 	}
-	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk));
+	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk));
 }
 
 // Scissor Up
@@ -68,17 +68,17 @@ void clclose()
 // Claw Up
 void clup()
 {
-	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk)) + ClwMve;
+	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk)) + ClwMve;
 }
 
 // Claw Down
 void cldown()
 {
-	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk)) - ClwMve;
+	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk)) - ClwMve;
 }
 
 // Claw hold
 void clhold()
 {
-	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk));
+	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk));
 }
