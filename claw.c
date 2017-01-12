@@ -9,7 +9,7 @@
 // claw height unit to change by each tick
 #define ClwHitUnit 25
 // claw hold power constant
-#define ClwHld 60
+#define ClwHld 100
 // claw move power constant
 #define ClwMve 10
 // encoder clicks per full rotation according to
@@ -22,8 +22,8 @@
 void srsetup()
 {
 	slaveMotor(ScissorSlave,Scissor);
-	nMotorEncoder[Scissor] = -45 * 7;
-	nMotorEncoder[Claw] = 175;
+	nMotorEncoder[Scissor] = EncClk * (-60 * 7) / 360;
+	nMotorEncoder[Claw] = EncClk * (180) / 360;
 	motor[Scissor] = SciBase;
 	while(nMotorEncoder[Claw]>10){
 		motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk)) - ClwMve;

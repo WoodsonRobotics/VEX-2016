@@ -21,6 +21,14 @@
 //*/
 #include "claw.c"
 #include "remote.c"
+task debug()
+{
+	while(1)
+	{
+		writeDebugStreamLine("Claw Motor: %d	Encoder: %d",motor[ClawRotation],nMotorEncoder[Claw]);
+		writeDebugStreamLine("Scissor Motor: %d	Encoder: %d",motor[Scissor],nMotorEncoder[Scissor]);
+	}
+}
 
 void pre_auton() {}
 void auto()
@@ -40,5 +48,5 @@ void auto()
 task autonomous()  { auto(); }
 task usercontrol() { remote(); }
 
-task main() { remote(); }
+task main() { startTask(debug); remote(); }
 //task main() { auto(); }
