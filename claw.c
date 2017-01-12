@@ -1,60 +1,54 @@
-// Speed difference to change height
-#define SpdDif 50
-// Scissor Base Speed
-#define SciBase 25
+// max speed difference to change height
+#define MaxSpdDifScr 50
+// scissor height unit to change by each tick
+#define ScrHitUnit 25
 // Speed to open/close claw
-#define OpClSpd 50
-// Speed to lift/lower claw
-#define LiftLow 75
+#define OpClSpd 75
+// max speed to rotate claw
+#define MaxSpdDifClw 75
+// claw height unit to change by each tick
+#define ClwHitUnit 25
+// claw hold power constant
+#define ClwHld 60
+// claw move power constant
+#define ClwMve 10
+// encoder clicks per full rotation according to
+// "http://help.robotc.net/WebHelpVEX/index.htm#Resources/topics/VEX_Cortex/ROBOTC/Motor_and_Servo/nMotorEncoder.htm"
+#define EncClk 627
 
-task debug()
-{
-	while(1)
-	{
-		writeDebugStreamLine("Claw: %d\nScissor: %d",nMotorEncoder[ClawRotation],nMotorEncoder[ScissorLeft]);
-	}
-}
+#define SpdDif 25
+#define SciBase 25
+
 void srsetup()
 {
-	motor[ScissorRight] = SciBase;
-	motor[ScissorLeft] = SciBase;
-	// Set motor encoders to zero to ensure good operation
-	nMotorEncoder[ScissorLeft] = 0;
-	nMotorEncoder[ClawRotation] = 0;
+	slaveMotor(ScissorSlave,Scissor);
+	nMotorEncoder[Scissor] = -45 * 7;
+	nMotorEncoder[Claw] = 175;
+	motor[Scissor] = SciBase;
+	while(nMotorEncoder[Claw]>10){
+		motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk)) - ClwMve;
+	}
+	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk));
 }
+
 // Scissor Up
 void srup()
 {
-	motor[ScissorLeft] = SciBase + SpdDif;
-	motor[ScissorRight] = SciBase + SpdDif;
+	motor[Scissor] = SciBase + SpdDif;
 }
+
 // Scissor Down
 void srdown()
 {
-	motor[ScissorLeft] = SciBase - SpdDif;
-	motor[ScissorRight] = SciBase - SpdDif;
+	motor[Scissor] = SciBase - SpdDif;
 }
+
 // Scissor Hold
 void srhold()
 {
-	motor[ScissorLeft] = SciBase;
-	motor[ScissorRight] = SciBase;
+	motor[Scissor] = SciBase;
 }
-// Claw Hold
-task clhold()
-{
-	int clawCurrent = nMotorEncoder[ClawRotation];
-	motor[ClawRotation] = 0;
-	while(1)
-	{
-		if(nMotorEncoder[ClawRotation] > clawCurrent)
-		{
-			motor[ClawRotation] = LiftLow;
-			sleep(50);
-			motor[ClawRotation] = 0;
-		}
-	}
-}
+
 // Claw Open
 void clopen()
 {
@@ -62,6 +56,7 @@ void clopen()
 	sleep(500);
 	motor[ClawGrab] = 0;
 }
+
 // Claw Close
 void clclose()
 {
@@ -69,24 +64,21 @@ void clclose()
 	sleep(500);
 	motor[ClawGrab] = 0;
 }
+
 // Claw Up
 void clup()
 {
-	stopTask(clhold);
-	motor[ClawRotation] = LiftLow;
-	sleep(100);
-	startTask(clhold);
+	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk)) + ClwMve;
 }
+
 // Claw Down
 void cldown()
 {
-	stopTask(clhold);
-	motor[ClawRotation] = -LiftLow;
-	sleep(100);
-	startTask(clhold);
+	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk)) - ClwMve;
 }
 
-
-// Motor Encoder
-// 627.2 per full rotation of the gear
-// Initial position is zero
+// Claw hold
+void clhold()
+{
+	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[Claw] / EncClk));
+}
