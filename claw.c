@@ -11,7 +11,7 @@
 // claw hold power constant
 #define ClwHld 100
 // claw move power constant
-#define ClwMve 10
+#define ClwMve 50
 // encoder clicks per full rotation according to
 // "http://help.robotc.net/WebHelpVEX/index.htm#Resources/topics/VEX_Cortex/ROBOTC/Motor_and_Servo/nMotorEncoder.htm"
 #define EncClk 627
@@ -19,16 +19,20 @@
 #define SpdDif 25
 #define SciBase 25
 
+#define RotMath (ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk)))
+
 void srsetup()
 {
 	slaveMotor(ScissorSlave,Scissor);
+	slaveMotor(ClawRotationSlave1,ClawRotation);
+	slaveMotor(ClawRotationSlave2,ClawRotation);
 	nMotorEncoder[Scissor] = EncClk * (-60 * 7) / 360;
 	nMotorEncoder[ClawRotation] = EncClk * (180) / 360;
 	motor[Scissor] = SciBase;
 	while(nMotorEncoder[ClawRotation]>10){
-		motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk)) - ClwMve;
+		motor[ClawRotation] = RotMath - ClwMve;
 	}
-	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk));
+	motor[ClawRotation] = RotMath;
 }
 
 // Scissor Up
@@ -53,32 +57,32 @@ void srhold()
 void clopen()
 {
 	motor[ClawGrab] = OpClSpd;
-	sleep(500);
-	motor[ClawGrab] = 0;
 }
 
 // Claw Close
 void clclose()
 {
 	motor[ClawGrab] = -OpClSpd;
-	sleep(500);
-	motor[ClawGrab] = 0;
 }
-
+// Claw grab stop
+void clstop()
+{
+	motor[ClawGrab]=0;
+}
 // Claw Up
 void clup()
 {
-	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk)) + ClwMve;
+	motor[ClawRotation] = RotMath + ClwMve;
 }
 
 // Claw Down
 void cldown()
 {
-	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk)) - ClwMve;
+	motor[ClawRotation] = RotMath - ClwMve;
 }
 
 // Claw hold
-void clhold()
+void clrothold()
 {
-	motor[ClawRotation] = ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor] / EncClk) / 7) + (360 * nMotorEncoder[ClawRotation] / EncClk));
+	motor[ClawRotation] = RotMath;
 }

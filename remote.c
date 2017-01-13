@@ -42,9 +42,10 @@ void remote()
 		// Claw Control
 		if(ClawOpen) clopen();
 		if(ClawClose) clclose();
+		if(!(ClawOpen || ClawClose)) clstop();
 		if(ClawUp) clup();
 		if(ClawDown) cldown();
-		if( !(ClawUp || ClawDown) ) clhold();
+		if( !(ClawUp || ClawDown) ) clrothold();
 		if(FreakOut) stopAllMotors();
 		sleep(100);
 	}
