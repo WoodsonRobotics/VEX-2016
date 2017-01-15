@@ -29,7 +29,7 @@ void srsetup()
 	nMotorEncoder[Scissor] = EncClk * (-60 * 21) / 360;
 	nMotorEncoder[ClawRotation] = EncClk * (180 * 3) / 360;
 	motor[Scissor] = SciBase;
-	while(nMotorEncoder[ClawRotation]>10){
+	while((EncClk * nMotorEncoder[ClawRotation] * 3 / 360)>90){
 		motor[ClawRotation] = RotMath - ClwMve;
 	}
 	motor[ClawRotation] = RotMath;

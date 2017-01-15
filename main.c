@@ -16,13 +16,14 @@
 
 // UNCOMMENT NEXT LINE FOR COMPETITIONS
 // COMMENT OUT MAIN FOR COMPETITIONS
-/*
+//*
 #pragma platform(VEX2)
 #pragma competitionControl(Competition)
 #include "Vex_Competition_Includes.c"
 //*/
 #include "claw.c"
 #include "remote.c"
+#include "auto.c"
 task debug()
 {
 	while(1)
@@ -34,22 +35,10 @@ task debug()
 }
 
 void pre_auton() {}
-void auto()
-{
-	srsetup();
-	int temp = ((SensorValue(LeftOrRight)/4095.0)*3);//potentiometer values range from 0 to 4095 with leftmost being 0 and rightmost being 4095
-	if(temp==0){
 
-		}else if(temp==1){
-
-		}else{
-
-		}
-	sleep(1000);
-}
 
 task autonomous()  { auto(); }
 task usercontrol() { remote(); }
 
-task main() { remote(); }
+//task main() { remote(); }
 //task main() { auto(); }

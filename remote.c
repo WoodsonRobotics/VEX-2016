@@ -1,9 +1,9 @@
 
-#define Rotation 	vexRT[Ch4]*2/3
+#define Rotation 	vexRT[Ch4]
 // Left-Right Strafe
-#define LRstraif 	vexRT[Ch1]*2/3
+#define LRstraif 	vexRT[Ch1]
 // Front-Back Drive
-#define FBdrive 	vexRT[Ch2]*2/3
+#define FBdrive 	vexRT[Ch2]
 #define ClawOpen	vexRT[Btn6U]
 #define ClawClose	vexRT[Btn6D]
 #define ScissorUp		vexRT[Btn5U]
