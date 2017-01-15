@@ -8,9 +8,9 @@
 #define ClawClose	vexRT[Btn6D]
 #define ScissorUp		vexRT[Btn5U]
 #define ScissorDown	vexRT[Btn5D]
-#define ClawUp vexRT[Btn8D]
-#define ClawDown vexRT[Btn8U]
-#define FreakOut vexRT[Btn7L]
+#define ClawUp vexRT[Btn7D]
+#define ClawDown vexRT[Btn7U]
+#define FreakOut vexRT[Btn8L]
 
 
 void remote()
@@ -47,6 +47,5 @@ void remote()
 		if(ClawDown) cldown();
 		if( !(ClawUp || ClawDown) ) clrothold();
 		if(FreakOut) stopAllMotors();
-		sleep(100);
 	}
 }
