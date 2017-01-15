@@ -19,14 +19,14 @@
 #define SpdDif 100
 #define SciBase 0
 
-#define RotMath (ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor]/ 35) / EncClk) + ((360 * nMotorEncoder[ClawRotation] / 3) / EncClk)))
+#define RotMath (ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor]/ 21) / EncClk) + ((360 * nMotorEncoder[ClawRotation] / 3) / EncClk)))
 
 void srsetup()
 {
 	slaveMotor(ScissorSlave,Scissor);
 	slaveMotor(ClawRotationSlave1,ClawRotation);
 	slaveMotor(ClawRotationSlave2,ClawRotation);
-	nMotorEncoder[Scissor] = EncClk * (-60 * 35) / 360;
+	nMotorEncoder[Scissor] = EncClk * (-60 * 21) / 360;
 	nMotorEncoder[ClawRotation] = EncClk * (180 * 3) / 360;
 	motor[Scissor] = SciBase;
 	while(nMotorEncoder[ClawRotation]>10){
