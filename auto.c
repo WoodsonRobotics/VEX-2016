@@ -24,14 +24,12 @@ void auto()
 
 	// Fully Extend Scissor
 	srup();
-	sleep(5000);
+	sleep(4000);
 	srhold();
-	// Drive forward slowly
-	drive(64,0,0);
-	sleep(500)
+	// Drive forward
+	drive(120,0,0);
+	sleep(500);
 	drive(0,0,0);
-
-
 }
 
 // Motors running at speeds less than 20 make a whining sound that is not great for the motor.
