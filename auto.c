@@ -24,7 +24,7 @@ void auto()
 
 	// Fully Extend Scissor
 	srup();
-	sleep(4000);
+	sleep(3500);
 	srhold();
 	// Drive forward
 	drive(120,0,0);
