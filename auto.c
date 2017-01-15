@@ -28,7 +28,7 @@ void auto()
 	srhold();
 	// Drive forward
 	drive(120,0,0);
-	sleep(500);
+	sleep(3000);
 	drive(0,0,0);
 }
 
