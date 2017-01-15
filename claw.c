@@ -11,7 +11,7 @@
 // claw hold power constant
 #define ClwHld 25
 // claw move power constant
-#define ClwMve 50
+#define ClwMve 75
 // encoder clicks per full rotation according to
 // "http://help.robotc.net/WebHelpVEX/index.htm#Resources/topics/VEX_Cortex/ROBOTC/Motor_and_Servo/nMotorEncoder.htm"
 #define EncClk 627

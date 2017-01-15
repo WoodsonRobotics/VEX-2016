@@ -20,10 +20,10 @@ void remote()
 	srsetup();
 	while (true)
 	{
-		int Mfr = -FBdrive + Rotation - LRstraif;
-		int Mbr = -FBdrive + Rotation + LRstraif;
-		int Mfl = -FBdrive - Rotation + LRstraif;
-		int Mbl = -FBdrive - Rotation - LRstraif;
+		int Mfr = -FBdrive + Rotation + LRstraif;
+		int Mbr = -FBdrive + Rotation - LRstraif;
+		int Mfl = -FBdrive - Rotation - LRstraif;
+		int Mbl = -FBdrive - Rotation + LRstraif;
 
 		if(Mfr < motorBuffer && Mfr > -motorBuffer) Mfr = 0;
 		if(Mbr < motorBuffer && Mbr > -motorBuffer) Mbr = 0;
