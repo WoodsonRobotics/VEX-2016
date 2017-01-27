@@ -1,18 +1,17 @@
-
-
-#define Rotation 	vexRT[Ch4]/2
-// Left-Right Strafe
-#define LRstraif 	vexRT[Ch1]/2
+// Rotation
+#define Rotation 	vexRT[Ch1]
 // Front-Back Drive
-#define FBdrive 	vexRT[Ch2]/2
-#define ClawOpen	vexRT[Btn6U]
-#define ClawClose	vexRT[Btn6D]
-#define ScissorUp		vexRT[Btn5U]
-#define ScissorDown	vexRT[Btn5D]
-#define ClawUp vexRT[Btn8D]
-#define ClawDown vexRT[Btn8U]
-#define FreakOut vexRT[Btn7L]
-
+#define FBdrive 	vexRT[Ch2]
+// Scissor
+#define ScissorMove	vexRT[Ch3]
+// LeftClaw
+#define LeftClawOut	vexRT[Btn5D]
+#define LeftClawIn  vexRT[Btn5U]
+// RightClaw
+#define RightClawOut vexRT[Btn6U]
+#define RightClawIn  vexRT[Btn6D]
+// Freak Out
+#define FreakOut vexRT[Btn8R]
 
 void remote()
 {
@@ -21,32 +20,28 @@ void remote()
 	srsetup();
 	while (true)
 	{
-		int Mfr = -FBdrive + Rotation - LRstraif;
-		int Mbr = -FBdrive + Rotation + LRstraif;
-		int Mfl = -FBdrive - Rotation + LRstraif;
-		int Mbl = -FBdrive - Rotation - LRstraif;
+		int Right = FBdrive + Rotation;
+		int Left = FBdrive - Rotation;
 
-		if(Mfr < motorBuffer && Mfr > -motorBuffer) Mfr = 0;
-		if(Mbr < motorBuffer && Mbr > -motorBuffer) Mbr = 0;
-		if(Mfl < motorBuffer && Mfl > -motorBuffer) Mfl = 0;
-		if(Mbl < motorBuffer && Mbl > -motorBuffer) Mbl = 0;
 
-		motor[FR] = Mfr;
-		motor[BR] = Mbr;
-		motor[FL] = Mfl;
-		motor[BL] = Mbl;
+		if(Right < motorBuffer && Right > -motorBuffer) Right = 0;
+		if(Left < motorBuffer && Left > -motorBuffer) Left = 0;
+
+
+		motor[LeftWheels] = Left;
+		motor[RightWheels] = Right;
 
 		// Scissor Control
-		if(ScissorUp) srup();
-		if(ScissorDown) srdown();
-		if( !(ScissorUp || ScissorDown) ) srhold();
-		// Claw Control
-		if(ClawOpen) clopen();
-		if(ClawClose) clclose();
-		if(ClawUp) clup();
-		if(ClawDown) cldown();
-		if( !(ClawUp || ClawDown) ) clhold();
+		srhold(ScissorMove);
+		// Left Claw Control
+		if(LeftClawOut) LClO();
+		else if(LeftClawIn)  LClI();
+		else LClS();
+		// Right Claw Control
+		if(RightClawOut) RClO();
+		else if(RightClawIn)  RClI();
+		else RClS();
+
 		if(FreakOut) stopAllMotors();
-		sleep(100);
 	}
 }

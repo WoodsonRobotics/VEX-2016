@@ -1,61 +1,54 @@
-// Speed difference to change height
-#define SpdDif 50
-// Scissor Base Speed
-#define SciBase 25
-// Speed to open/close claw
-#define OpClSpd 50
-// Speed to lift/lower claw
-#define LiftLow 75
+// Claw Speed
+#define ClSpd 50
+
+
+
+
 
 void srsetup()
 {
-	motor[SR] = SciBase;
-	motor[SL] = SciBase;
+	slaveMotor(ScissorSlave,Scissor);
+
+
+	motor[LeftClaw]=ClSpd;
+	motor[RightClaw]=ClSpd;
 }
-// Scissor Up
-void srup()
-{
-	motor[SL] = SciBase + SpdDif;
-	motor[SR] = SciBase + SpdDif;
-}
-// Scissor Down
-void srdown()
-{
-	motor[SL] = SciBase - SpdDif;
-	motor[SR] = SciBase - SpdDif;
-}
+
+
+
 // Scissor Hold
-void srhold()
+void srhold(int power)
 {
-	motor[SL] = SciBase;
-	motor[SR] = SciBase;
+	motor[Scissor] = power;
 }
-// Claw Open
-void clopen()
-{
-	motor[CG] = OpClSpd;
-	sleep(500);
-	motor[CG] = 0;
+
+// Left Claw Stop
+void LClS(){
+motor[LeftClaw]=0;
 }
-// Claw Close
-void clclose()
-{
-	motor[CG] = -OpClSpd;
-	sleep(500);
-	motor[CG] = 0;
+
+// Left Claw In
+void LClI(){
+motor[LeftClaw]=ClSpd;
 }
-// Claw Up
-void clup()
-{
-	motor[CR] = LiftLow;
+
+// Left Claw Out
+void LClO(){
+motor[LeftClaw]=-ClSpd;
 }
-// Claw Down
-void cldown()
-{
-	motor[CR] = -LiftLow;
+
+
+// Right Claw Stop
+void RClS(){
+motor[RightClaw]=0;
 }
-// Claw Hold
-void clhold()
-{
-	motor[CR] = 0;
+
+// Right Claw In
+void RClI(){
+motor[RightClaw]=ClSpd;
+}
+
+// Right Claw Out
+void RClO(){
+motor[RightClaw]=-ClSpd;
 }
