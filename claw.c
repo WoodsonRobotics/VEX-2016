@@ -1,61 +1,88 @@
-// Speed difference to change height
-#define SpdDif 50
-// Scissor Base Speed
-#define SciBase 25
+// max speed difference to change height
+#define MaxSpdDifScr 50
+// scissor height unit to change by each tick
+#define ScrHitUnit 25
 // Speed to open/close claw
-#define OpClSpd 50
-// Speed to lift/lower claw
-#define LiftLow 75
+#define OpClSpd 75
+// max speed to rotate claw
+#define MaxSpdDifClw 75
+// claw height unit to change by each tick
+#define ClwHitUnit 50
+// claw hold power constant
+#define ClwHld 25
+// claw move power constant
+#define ClwMve 75
+// encoder clicks per full rotation according to
+// "http://help.robotc.net/WebHelpVEX/index.htm#Resources/topics/VEX_Cortex/ROBOTC/Motor_and_Servo/nMotorEncoder.htm"
+#define EncClk 627
+
+#define SpdDif 100
+#define SciBase 0
+
+#define RotMath (ClwHld * cosDegrees(((360 * nMotorEncoder[Scissor]/ 21) / EncClk) + ((360 * nMotorEncoder[ClawRotation] / 3) / EncClk)))
 
 void srsetup()
 {
-	motor[SR] = SciBase;
-	motor[SL] = SciBase;
+	slaveMotor(ScissorSlave,Scissor);
+	slaveMotor(ClawRotationSlave1,ClawRotation);
+	slaveMotor(ClawRotationSlave2,ClawRotation);
+	nMotorEncoder[Scissor] = EncClk * (-60 * 21) / 360;
+	nMotorEncoder[ClawRotation] = EncClk * (180 * 3) / 360;
+	motor[Scissor] = SciBase;
+	while((EncClk * nMotorEncoder[ClawRotation] * 3 / 360)>90){
+		motor[ClawRotation] = RotMath - ClwMve;
+	}
+	motor[ClawRotation] = RotMath;
 }
+
 // Scissor Up
 void srup()
 {
-	motor[SL] = SciBase + SpdDif;
-	motor[SR] = SciBase + SpdDif;
+	motor[Scissor] = SciBase + SpdDif;
 }
+
 // Scissor Down
 void srdown()
 {
-	motor[SL] = SciBase - SpdDif;
-	motor[SR] = SciBase - SpdDif;
+	motor[Scissor] = SciBase - SpdDif;
 }
+
 // Scissor Hold
 void srhold()
 {
-	motor[SL] = SciBase;
-	motor[SR] = SciBase;
+	motor[Scissor] = SciBase;
 }
+
 // Claw Open
 void clopen()
 {
-	motor[CG] = OpClSpd;
-	sleep(500);
-	motor[CG] = 0;
+	motor[ClawGrab] = OpClSpd;
 }
+
 // Claw Close
 void clclose()
 {
-	motor[CG] = -OpClSpd;
-	sleep(500);
-	motor[CG] = 0;
+	motor[ClawGrab] = -OpClSpd;
+}
+// Claw grab stop
+void clstop()
+{
+	motor[ClawGrab]=0;
 }
 // Claw Up
 void clup()
 {
-	motor[CR] = LiftLow;
+	motor[ClawRotation] = RotMath + ClwMve;
 }
+
 // Claw Down
 void cldown()
 {
-	motor[CR] = -LiftLow;
+	motor[ClawRotation] = RotMath - ClwMve;
 }
-// Claw Hold
-void clhold()
+
+// Claw hold
+void clrothold()
 {
-	motor[CR] = 0;
+	motor[ClawRotation] = RotMath;
 }
