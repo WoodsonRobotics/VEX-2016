@@ -1,7 +1,7 @@
 // Rotation
-#define Rotation 	vexRT[Ch1]
+#define Rotation 	vexRT[Ch2]
 // Front-Back Drive
-#define FBdrive 	vexRT[Ch2]
+#define FBdrive 	vexRT[Ch1]
 // Scissor
 #define ScissorMove	vexRT[Ch3]
 // LeftClaw
@@ -20,8 +20,8 @@ void remote()
 	srsetup();
 	while (true)
 	{
-		int Right = FBdrive + Rotation;
-		int Left = FBdrive - Rotation;
+		int Right = (FBdrive - Rotation)/2;
+		int Left = (FBdrive + Rotation)/2;
 
 
 		if(Right < motorBuffer && Right > -motorBuffer) Right = 0;
