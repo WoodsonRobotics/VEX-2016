@@ -1,17 +1,17 @@
 // Rotation
-#define Rotation 	vexRT[Ch2]
+#define Rotation 	vexRT[Ch2Xmtr2]
 // Front-Back Drive
-#define FBdrive 	vexRT[Ch1]
+#define FBdrive 	vexRT[Ch1Xmtr2]
 // Scissor
-#define ScissorMove	vexRT[Ch3]
+#define ScissorMove	vexRT[Ch3Xmtr2]
 // LeftClaw
-#define LeftClawOut	vexRT[Btn5D]
-#define LeftClawIn  vexRT[Btn5U]
+#define LeftClawOut	vexRT[Btn5DXmtr2]
+#define LeftClawIn  vexRT[Btn5UXmtr2]
 // RightClaw
-#define RightClawOut vexRT[Btn6U]
-#define RightClawIn  vexRT[Btn6D]
+#define RightClawOut vexRT[Btn6UXmtr2]
+#define RightClawIn  vexRT[Btn6DXmtr2]
 // Freak Out
-#define FreakOut vexRT[Btn8R]
+#define FreakOut vexRT[Btn8RXmtr2]
 
 void remote()
 {
