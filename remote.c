@@ -1,23 +1,26 @@
 // Rotation
-#define Rotation 	vexRT[Ch2Xmtr2]
+#define Rotation 	vexRT[Ch2]
 // Front-Back Drive
-#define FBdrive 	vexRT[Ch1Xmtr2]
+#define FBdrive 	vexRT[Ch1]
 // Scissor
-#define ScissorMove	vexRT[Ch3Xmtr2]
+#define ScissorMove	vexRT[Ch3]
 // LeftClaw
-#define LeftClawOut	vexRT[Btn5DXmtr2]
-#define LeftClawIn  vexRT[Btn5UXmtr2]
+#define LeftClawOut	vexRT[Btn5D]
+#define LeftClawIn  vexRT[Btn5U]
 // RightClaw
-#define RightClawOut vexRT[Btn6UXmtr2]
-#define RightClawIn  vexRT[Btn6DXmtr2]
+#define RightClawOut vexRT[Btn6U]
+#define RightClawIn  vexRT[Btn6D]
+// shortcut quick-key for closing the claw
+#define ClawClose vexRt[Btn7U]
 // Freak Out
-#define FreakOut vexRT[Btn8RXmtr2]
+#define FreakOut vexRT[Btn8R]
 
 void remote()
 {
 	// Motors running at speeds less than 20 make a whining sound that is not great for the motor.
 	int motorBuffer = 20;
 	srsetup();
+	bool btnChange = true;
 	while (true)
 	{
 		int Right = (FBdrive - Rotation)/2;
@@ -33,9 +36,13 @@ void remote()
 
 		// Scissor Control
 		srhold(ScissorMove);
+		// claw shortcut btns
+		if(clawClose)
+
 		// Left Claw Control
 		if(LeftClawOut) LClO();
 		else if(LeftClawIn)  LClI();
+		else if(clawClose)
 		else LClS();
 		// Right Claw Control
 		if(RightClawOut) RClO();
