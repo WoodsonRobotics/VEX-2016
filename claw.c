@@ -1,6 +1,8 @@
 // Claw Speed
-#define ClSpd 50
+#define ClSpd 75
 
+#define inSpot 1000
+#define outSpot 50
 
 
 
@@ -37,6 +39,19 @@ void LClO(){
 motor[LeftClaw]=-ClSpd;
 }
 
+void LCC(){
+	int S = SensorValue(LeftClawRot);
+if(S<inSpot) LClI();
+else if(S>(inSpot+5)) LClO();
+else LClS();
+}
+
+void LCO(){
+int S = SensorValue(LeftClawRot);
+if(S<outSpot) LClI();
+else if(S>(outSpot+5)) LClO();
+else LClS();
+}
 
 // Right Claw Stop
 void RClS(){
@@ -51,4 +66,18 @@ motor[RightClaw]=ClSpd;
 // Right Claw Out
 void RClO(){
 motor[RightClaw]=-ClSpd;
+}
+
+void RCC(){
+	int S = SensorValue(LeftClawRot);
+if(S<inSpot) RClI();
+else if(S>(inSpot+5)) RClO();
+else RClS();
+}
+
+void RCO(){
+int S = SensorValue(LeftClawRot);
+if(S<outSpot) RClI();
+else if(S>(outSpot+5)) RClO();
+else RClS();
 }
