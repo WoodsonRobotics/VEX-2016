@@ -1,10 +1,13 @@
 // Claw Speed
 #define ClSpd 75
 
-#define inSpot 1000
-#define outSpot 50
+#define outR 1750
+#define outL 1650
 
+#define inR 3100
+#define inL 3000
 
+#define clB 250
 
 
 void srsetup()
@@ -21,6 +24,9 @@ void srsetup()
 // Scissor Hold
 void srhold(int power)
 {
+	int motorBuffer = 50;
+	if(power < motorBuffer && power > -motorBuffer) power = 0;
+
 	motor[Scissor] = power;
 }
 
@@ -41,15 +47,15 @@ motor[LeftClaw]=-ClSpd;
 
 void LCC(){
 	int S = SensorValue(LeftClawRot);
-if(S<inSpot) LClI();
-else if(S>(inSpot+5)) LClO();
+if(S<(inL-clB)) LClI();
+else if(S>(inL+clB)) LClO();
 else LClS();
 }
 
 void LCO(){
 int S = SensorValue(LeftClawRot);
-if(S<outSpot) LClI();
-else if(S>(outSpot+5)) LClO();
+if(S<(outL-clB)) LClI();
+else if(S>(outL+clB)) LClO();
 else LClS();
 }
 
@@ -69,15 +75,15 @@ motor[RightClaw]=-ClSpd;
 }
 
 void RCC(){
-	int S = SensorValue(LeftClawRot);
-if(S<inSpot) RClI();
-else if(S>(inSpot+5)) RClO();
+	int S = SensorValue(RightClawRot);
+if(S<(inR-clB)) RClI();
+else if(S>(inR+clB)) RClO();
 else RClS();
 }
 
 void RCO(){
-int S = SensorValue(LeftClawRot);
-if(S<outSpot) RClI();
-else if(S>(outSpot+5)) RClO();
+int S = SensorValue(RightClawRot);
+if(S<(outR-clB)) RClI();
+else if(S>(outR+clB)) RClO();
 else RClS();
 }
