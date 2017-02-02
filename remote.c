@@ -22,7 +22,7 @@ void remote()
 	int motorBuffer = 20;
 	srsetup();
 	bool clawClose = false;
-	bool clawOpen = false;
+	bool clawOpen = true;
 	bool clawCloseBtnChng = true;
 	bool clawOpenBtnChng = true;
 	while (true)
@@ -37,9 +37,10 @@ void remote()
 
 		motor[LeftWheels] = Left;
 		motor[RightWheels] = Right;
-
+if(FreakOut) stopAllMotors();
 		// Scissor Control
 		srhold(ScissorMove);
+		if(FreakOut) stopAllMotors();
 		if(clawCloseToggle){
 			if(clawCloseBtnChng){
 				if(clawClose){
@@ -53,6 +54,7 @@ void remote()
 			}else{
 			clawCloseBtnChng=true;
 		}
+		if(FreakOut) stopAllMotors();
 		if(clawOpenToggle){
 			if(clawOpenBtnChng){
 				if(clawOpen){
@@ -69,13 +71,14 @@ void remote()
 			clawOpenBtnChng=true;
 		}
 
-
+if(FreakOut) stopAllMotors();
 		// Left Claw Control
 		if(LeftClawOut) LClO();
 		else if(LeftClawIn)  LClI();
 		else if(clawClose) LCC();
 		else if(clawOpen) LCO();
 		else LClS();
+		if(FreakOut) stopAllMotors();
 		// Right Claw Control
 		if(RightClawOut) RClO();
 		else if(RightClawIn)  RClI();
@@ -84,5 +87,6 @@ void remote()
 		else RClS();
 
 		if(FreakOut) stopAllMotors();
+		sleep(1);
 	}
 }

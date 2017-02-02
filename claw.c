@@ -4,8 +4,8 @@
 #define outR 1750
 #define outL 1650
 
-#define inR 3100
-#define inL 3000
+#define inR 3200
+#define inL 3100
 
 #define clB 250
 
@@ -15,8 +15,7 @@ void srsetup()
 	slaveMotor(ScissorSlave,Scissor);
 
 
-	motor[LeftClaw]=ClSpd;
-	motor[RightClaw]=ClSpd;
+
 }
 
 
