@@ -1,9 +1,6 @@
 // Claw Speed
 #define ClSpd 75
 
-#define outR 1750
-#define outL 1650
-
 #define inR 3200
 #define inL 3100
 
@@ -51,12 +48,7 @@ else if(S>(inL+clB)) LClO();
 else LClS();
 }
 
-void LCO(){
-int S = SensorValue(LeftClawRot);
-if(S<(outL-clB)) LClI();
-else if(S>(outL+clB)) LClO();
-else LClS();
-}
+
 
 // Right Claw Stop
 void RClS(){
@@ -77,12 +69,5 @@ void RCC(){
 	int S = SensorValue(RightClawRot);
 if(S<(inR-clB)) RClI();
 else if(S>(inR+clB)) RClO();
-else RClS();
-}
-
-void RCO(){
-int S = SensorValue(RightClawRot);
-if(S<(outR-clB)) RClI();
-else if(S>(outR+clB)) RClO();
 else RClS();
 }

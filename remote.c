@@ -12,7 +12,7 @@
 #define RightClawIn  vexRT[Btn6D]
 // CloseClaw
 #define clawCloseToggle vexRT[Btn7U]
-#define clawOpenToggle vexRT[Btn7D]
+#define clawOpen vexRT[Btn7D]
 // Freak Out
 #define FreakOut vexRT[Btn8R]
 
@@ -22,9 +22,7 @@ void remote()
 	int motorBuffer = 20;
 	srsetup();
 	bool clawClose = false;
-	bool clawOpen = true;
 	bool clawCloseBtnChng = true;
-	bool clawOpenBtnChng = true;
 	while (true)
 	{
 		int Right = (FBdrive - Rotation)/2;
@@ -43,47 +41,26 @@ if(FreakOut) stopAllMotors();
 		if(FreakOut) stopAllMotors();
 		if(clawCloseToggle){
 			if(clawCloseBtnChng){
-				if(clawClose){
-					clawClose=false;
-					}else{
-					clawClose=true;
-					clawOpen=false;
-				}
+				clawClose=!clawClose;
 				clawCloseBtnChng=false;
 			}
 			}else{
 			clawCloseBtnChng=true;
 		}
-		if(FreakOut) stopAllMotors();
-		if(clawOpenToggle){
-			if(clawOpenBtnChng){
-				if(clawOpen){
-					clawOpen=false;
-					}	else{
-					clawOpen=true;
-					clawClose=false;
-				}
 
 
-				clawOpenBtnChng=false;
-			}
-			}else{
-			clawOpenBtnChng=true;
-		}
 
 if(FreakOut) stopAllMotors();
 		// Left Claw Control
-		if(LeftClawOut) LClO();
+		if(LeftClawOut || clawOpen) LClO();
 		else if(LeftClawIn)  LClI();
 		else if(clawClose) LCC();
-		else if(clawOpen) LCO();
 		else LClS();
 		if(FreakOut) stopAllMotors();
 		// Right Claw Control
-		if(RightClawOut) RClO();
+		if(RightClawOut || clawOpen) RClO();
 		else if(RightClawIn)  RClI();
 		else if(clawClose) RCC();
-		else if(clawOpen) RCO();
 		else RClS();
 
 		if(FreakOut) stopAllMotors();
