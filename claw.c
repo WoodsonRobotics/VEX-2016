@@ -10,7 +10,8 @@
 void srsetup()
 {
 	slaveMotor(ScissorSlave,Scissor);
-
+  slaveMotor(RightClawSlave,RightClaw);
+  slaveMotor(LeftClawSlave,LeftClaw);
 
 
 }
