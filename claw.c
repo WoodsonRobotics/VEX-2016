@@ -1,11 +1,13 @@
 // Claw Speed
 #define ClSpd 75
 
-#define inR 3200
-#define inL 3100
+#define inR 3100
+#define inL 2925
 
-#define clB 250
+#define clB 10
 
+#define ScrUpLmt 4000
+#define ScrLowLmt -175
 
 void srsetup()
 {
@@ -22,7 +24,7 @@ void srsetup()
 void srhold(int power)
 {
 	int motorBuffer = 50;
-	if(power < motorBuffer && power > -motorBuffer) power = 0;
+	if((power < motorBuffer && power > -motorBuffer)||(nMotorEncoder[Scissor]<ScrLowLmt&&power<0)||(nMotorEncoder[Scissor]>ScrUpLmt&&power>0)) power = 0;
 
 	motor[Scissor] = power;
 }

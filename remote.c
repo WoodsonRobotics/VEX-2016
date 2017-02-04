@@ -21,7 +21,7 @@ void remote()
 	// Motors running at speeds less than 20 make a whining sound that is not great for the motor.
 	int motorBuffer = 20;
 	srsetup();
-	bool clawClose = false;
+	bool clawClose = true;
 	bool clawCloseBtnChng = true;
 	while (true)
 	{
