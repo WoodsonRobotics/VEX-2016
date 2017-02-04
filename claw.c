@@ -6,8 +6,6 @@
 
 #define clB 10
 
-#define ScrUpLmt 4000
-#define ScrLowLmt -175
 
 void srsetup()
 {
@@ -24,7 +22,7 @@ void srsetup()
 void srhold(int power)
 {
 	int motorBuffer = 50;
-	if((power < motorBuffer && power > -motorBuffer)||(nMotorEncoder[Scissor]<ScrLowLmt&&power<0)||(nMotorEncoder[Scissor]>ScrUpLmt&&power>0)) power = 0;
+	if((power < motorBuffer && power > -motorBuffer)||(SensorValue(ScissorDownS)&&power<0)/*||(SensorValue(ScissorUpS)&&power>0)*/) power = 0;
 
 	motor[Scissor] = power;
 }
