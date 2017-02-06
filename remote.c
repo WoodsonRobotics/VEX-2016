@@ -1,20 +1,22 @@
+// partner or no?
+#define part vexRT[Btn8L]
 // Rotation
-#define Rotation 	vexRT[Ch2]
+#define Rotation 	((part)?(vexRT[Ch2Xmtr2]):(vexRT[Ch2]))
 // Front-Back Drive
-#define FBdrive 	vexRT[Ch1]
+#define FBdrive 	((part)?(vexRT[Ch1Xmtr2]):(vexRT[Ch1]))
 // Scissor
-#define ScissorMove	vexRT[Ch3]
+#define ScissorMove	((part)?(vexRT[Ch3Xmtr2]):(vexRT[Ch3]))
 // LeftClaw
-#define LeftClawOut	vexRT[Btn5U]
-#define LeftClawIn  vexRT[Btn5D]
+#define LeftClawOut	((part)?(vexRT[Btn5UXmtr2]):(vexRT[Btn5U]))
+#define LeftClawIn  ((part)?(vexRT[Btn5DXmtr2]):(vexRT[Btn5D]))
 // RightClaw
-#define RightClawOut vexRT[Btn6U]
-#define RightClawIn  vexRT[Btn6D]
+#define RightClawOut ((part)?(vexRT[Btn6UXmtr2]):(vexRT[Btn6U]))
+#define RightClawIn  ((part)?(vexRT[Btn6DXmtr2]):(vexRT[Btn6D]))
 // CloseClaw
-#define clawCloseToggle vexRT[Btn7U]
-#define clawOpen vexRT[Btn7D]
-// Freak Out
-#define FreakOut vexRT[Btn8R]
+#define clawCloseToggle ((part)?(vexRT[Btn8UXmtr2]):(vexRT[Btn8U]))
+#define clawCloseB ((part)?(vexRT[Btn7UXmtr2]):(vexRT[Btn7U]))
+#define clawOpenB ((part)?(vexRT[Btn7DXmtr2]):(vexRT[Btn7D]))
+
 
 void remote()
 {
@@ -35,10 +37,12 @@ void remote()
 
 		motor[LeftWheels] = Left;
 		motor[RightWheels] = Right;
-if(FreakOut) stopAllMotors();
+
 		// Scissor Control
+		if(SensorValue(ScissorDownT)) {nMotorEncoder[ScissorLift]=0;}
+
 		srhold(ScissorMove);
-		if(FreakOut) stopAllMotors();
+
 		if(clawCloseToggle){
 			if(clawCloseBtnChng){
 				clawClose=!clawClose;
@@ -50,20 +54,20 @@ if(FreakOut) stopAllMotors();
 
 
 
-if(FreakOut) stopAllMotors();
+
 		// Left Claw Control
-		if(LeftClawOut || clawOpen) LClO();
-		else if(LeftClawIn)  LClI();
+		if(LeftClawOut || clawOpenB) LClO();
+		else if(LeftClawIn || clawCloseB)  LClI();
 		else if(clawClose) LCC();
 		else LClS();
-		if(FreakOut) stopAllMotors();
+
 		// Right Claw Control
-		if(RightClawOut || clawOpen) RClO();
-		else if(RightClawIn)  RClI();
+		if(RightClawOut || clawOpenB) RClO();
+		else if(RightClawIn || clawCloseB)  RClI();
 		else if(clawClose) RCC();
 		else RClS();
 
-		if(FreakOut) stopAllMotors();
+
 		sleep(1);
 	}
 }
