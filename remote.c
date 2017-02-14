@@ -20,7 +20,12 @@ void remote()
 	// Motors running at speeds less than 20 make a whining sound that is not great for the motor.
 	int motorBuffer = 20;
 	srsetup();
+<<<<<<< HEAD
 	bool btnChange = true;
+=======
+	bool clawClose = true;
+	bool clawCloseBtnChng = true;
+>>>>>>> parent of 99610ba... we competed with this code
 	while (true)
 	{
 		int Right = (FBdrive - Rotation)/2;

@@ -4,6 +4,8 @@
 
 
 
+#define ScrUpLmt 4000
+#define ScrLowLmt -175
 
 void srsetup()
 {
@@ -19,6 +21,12 @@ void srsetup()
 // Scissor Hold
 void srhold(int power)
 {
+<<<<<<< HEAD
+=======
+	int motorBuffer = 50;
+	if((power < motorBuffer && power > -motorBuffer)||(nMotorEncoder[Scissor]<ScrLowLmt&&power<0)||(nMotorEncoder[Scissor]>ScrUpLmt&&power>0)) power = 0;
+
+>>>>>>> parent of 99610ba... we competed with this code
 	motor[Scissor] = power;
 }
 

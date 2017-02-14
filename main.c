@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 #pragma config(Sensor, in1,    LeftOrRight,    sensorPotentiometer)
+=======
+#pragma config(I2C_Usage, I2C1, i2cSensors)
+#pragma config(Sensor, in1,    RightClawRot,   sensorPotentiometer)
+#pragma config(Sensor, in2,    LeftClawRot,    sensorPotentiometer)
+#pragma config(Sensor, I2C_1,  Scissor,        sensorQuadEncoderOnI2CPort,    , AutoAssign )
+#pragma config(Motor,  port1,           RightClawSlave, tmotorVex393_HBridge, openLoop)
+>>>>>>> parent of 99610ba... we competed with this code
 #pragma config(Motor,  port2,           LeftWheels,    tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           RightWheels,   tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port4,           Scissor,       tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port4,           Scissor,       tmotorVex393_MC29, openLoop, encoderPort, I2C_1)
 #pragma config(Motor,  port5,           ScissorSlave,  tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port6,           LeftClaw,      tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           RightClaw,     tmotorVex393_MC29, openLoop)
